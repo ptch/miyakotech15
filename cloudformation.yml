@@ -1,0 +1,379 @@
+AWSTemplateFormatVersion: 2010-09-09
+Resources:
+  SecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Allow http to client host
+      VpcId: vpc-9e86d6f9
+      SecurityGroupIngress:
+      - IpProtocol: tcp
+        FromPort: '80'
+        ToPort: '80'
+        CidrIp: 0.0.0.0/0
+      - IpProtocol: tcp
+        FromPort: '443'
+        ToPort: '443'
+        CidrIp: 0.0.0.0/0
+      - IpProtocol: tcp
+        FromPort: '22'
+        ToPort: '22'
+        CidrIp: 0.0.0.0/0
+      SecurityGroupEgress:
+      - IpProtocol: tcp
+        FromPort: '80'
+        ToPort: '80'
+        CidrIp: 0.0.0.0/0
+      - IpProtocol: tcp
+        FromPort: '443'
+        ToPort: '443'
+        CidrIp: 0.0.0.0/0
+      - IpProtocol: tcp
+        FromPort: '22'
+        ToPort: '22'
+        CidrIp: 0.0.0.0/0
+  Miyakotech01:
+    Type: "AWS::EC2::Instance"
+    Properties:
+      ImageId: ami-0ee0b7ac4daa15e1d
+      InstanceType: t2.small
+      NetworkInterfaces:
+        - AssociatePublicIpAddress: "true"
+          DeviceIndex: "0"
+          GroupSet:
+            - Ref: "SecurityGroup"
+      UserData:
+        Fn::Base64: |
+          #!/bin/bash
+          DEBIAN_FRONTEND=noninteractive apt-get update
+          DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
+          echo "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINaFgHdnrJSH/Z0BFtd0+TBJ809UxPcmFLt1VFnwGtOm miyakotech15" > /home/ubuntu/.ssh/authorized_keys
+          chown ubuntu:ubuntu /home/ubuntu/.ssh/authorized_keys
+          chmod 600 /home/ubuntu/.ssh/authorized_keys
+          locale-gen ja_JP.UTF-8
+          hostnamectl set-hostname miyakotech01
+  Miyakotech02:
+    Type: "AWS::EC2::Instance"
+    Properties:
+      ImageId: ami-0ee0b7ac4daa15e1d
+      InstanceType: t2.small
+      NetworkInterfaces:
+        - AssociatePublicIpAddress: "true"
+          DeviceIndex: "0"
+          GroupSet:
+            - Ref: "SecurityGroup"
+      UserData:
+        Fn::Base64: |
+          #!/bin/bash
+          DEBIAN_FRONTEND=noninteractive apt-get update
+          DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
+          echo "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINaFgHdnrJSH/Z0BFtd0+TBJ809UxPcmFLt1VFnwGtOm miyakotech15" > /home/ubuntu/.ssh/authorized_keys
+          chown ubuntu:ubuntu /home/ubuntu/.ssh/authorized_keys
+          chmod 600 /home/ubuntu/.ssh/authorized_keys
+          locale-gen ja_JP.UTF-8
+          hostnamectl set-hostname miyakotech02
+  Miyakotech03:
+    Type: "AWS::EC2::Instance"
+    Properties:
+      ImageId: ami-0ee0b7ac4daa15e1d
+      InstanceType: t2.small
+      NetworkInterfaces:
+        - AssociatePublicIpAddress: "true"
+          DeviceIndex: "0"
+          GroupSet:
+            - Ref: "SecurityGroup"
+      UserData:
+        Fn::Base64: |
+          #!/bin/bash
+          DEBIAN_FRONTEND=noninteractive apt-get update
+          DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
+          echo "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINaFgHdnrJSH/Z0BFtd0+TBJ809UxPcmFLt1VFnwGtOm miyakotech15" > /home/ubuntu/.ssh/authorized_keys
+          chown ubuntu:ubuntu /home/ubuntu/.ssh/authorized_keys
+          chmod 600 /home/ubuntu/.ssh/authorized_keys
+          locale-gen ja_JP.UTF-8
+          hostnamectl set-hostname miyakotech03
+  Miyakotech04:
+    Type: "AWS::EC2::Instance"
+    Properties:
+      ImageId: ami-0ee0b7ac4daa15e1d
+      InstanceType: t2.small
+      NetworkInterfaces:
+        - AssociatePublicIpAddress: "true"
+          DeviceIndex: "0"
+          GroupSet:
+            - Ref: "SecurityGroup"
+      UserData:
+        Fn::Base64: |
+          #!/bin/bash
+          DEBIAN_FRONTEND=noninteractive apt-get update
+          DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
+          echo "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINaFgHdnrJSH/Z0BFtd0+TBJ809UxPcmFLt1VFnwGtOm miyakotech15" > /home/ubuntu/.ssh/authorized_keys
+          chown ubuntu:ubuntu /home/ubuntu/.ssh/authorized_keys
+          chmod 600 /home/ubuntu/.ssh/authorized_keys
+          locale-gen ja_JP.UTF-8
+          hostnamectl set-hostname miyakotech04
+  Miyakotech05:
+    Type: "AWS::EC2::Instance"
+    Properties:
+      ImageId: ami-0ee0b7ac4daa15e1d
+      InstanceType: t2.small
+      NetworkInterfaces:
+        - AssociatePublicIpAddress: "true"
+          DeviceIndex: "0"
+          GroupSet:
+            - Ref: "SecurityGroup"
+      UserData:
+        Fn::Base64: |
+          #!/bin/bash
+          DEBIAN_FRONTEND=noninteractive apt-get update
+          DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
+          echo "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINaFgHdnrJSH/Z0BFtd0+TBJ809UxPcmFLt1VFnwGtOm miyakotech15" > /home/ubuntu/.ssh/authorized_keys
+          chown ubuntu:ubuntu /home/ubuntu/.ssh/authorized_keys
+          chmod 600 /home/ubuntu/.ssh/authorized_keys
+          locale-gen ja_JP.UTF-8
+          hostnamectl set-hostname miyakotech05
+  Miyakotech06:
+    Type: "AWS::EC2::Instance"
+    Properties:
+      ImageId: ami-0ee0b7ac4daa15e1d
+      InstanceType: t2.small
+      NetworkInterfaces:
+        - AssociatePublicIpAddress: "true"
+          DeviceIndex: "0"
+          GroupSet:
+            - Ref: "SecurityGroup"
+      UserData:
+        Fn::Base64: |
+          #!/bin/bash
+          DEBIAN_FRONTEND=noninteractive apt-get update
+          DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
+          echo "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINaFgHdnrJSH/Z0BFtd0+TBJ809UxPcmFLt1VFnwGtOm miyakotech15" > /home/ubuntu/.ssh/authorized_keys
+          chown ubuntu:ubuntu /home/ubuntu/.ssh/authorized_keys
+          chmod 600 /home/ubuntu/.ssh/authorized_keys
+          locale-gen ja_JP.UTF-8
+          hostnamectl set-hostname miyakotech06
+  Miyakotech07:
+    Type: "AWS::EC2::Instance"
+    Properties:
+      ImageId: ami-0ee0b7ac4daa15e1d
+      InstanceType: t2.small
+      NetworkInterfaces:
+        - AssociatePublicIpAddress: "true"
+          DeviceIndex: "0"
+          GroupSet:
+            - Ref: "SecurityGroup"
+      UserData:
+        Fn::Base64: |
+          #!/bin/bash
+          DEBIAN_FRONTEND=noninteractive apt-get update
+          DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
+          echo "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINaFgHdnrJSH/Z0BFtd0+TBJ809UxPcmFLt1VFnwGtOm miyakotech15" > /home/ubuntu/.ssh/authorized_keys
+          chown ubuntu:ubuntu /home/ubuntu/.ssh/authorized_keys
+          chmod 600 /home/ubuntu/.ssh/authorized_keys
+          locale-gen ja_JP.UTF-8
+          hostnamectl set-hostname miyakotech07
+  Miyakotech08:
+    Type: "AWS::EC2::Instance"
+    Properties:
+      ImageId: ami-0ee0b7ac4daa15e1d
+      InstanceType: t2.small
+      NetworkInterfaces:
+        - AssociatePublicIpAddress: "true"
+          DeviceIndex: "0"
+          GroupSet:
+            - Ref: "SecurityGroup"
+      UserData:
+        Fn::Base64: |
+          #!/bin/bash
+          DEBIAN_FRONTEND=noninteractive apt-get update
+          DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
+          echo "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINaFgHdnrJSH/Z0BFtd0+TBJ809UxPcmFLt1VFnwGtOm miyakotech15" > /home/ubuntu/.ssh/authorized_keys
+          chown ubuntu:ubuntu /home/ubuntu/.ssh/authorized_keys
+          chmod 600 /home/ubuntu/.ssh/authorized_keys
+          locale-gen ja_JP.UTF-8
+          hostnamectl set-hostname miyakotech08
+  Miyakotech09:
+    Type: "AWS::EC2::Instance"
+    Properties:
+      ImageId: ami-0ee0b7ac4daa15e1d
+      InstanceType: t2.small
+      NetworkInterfaces:
+        - AssociatePublicIpAddress: "true"
+          DeviceIndex: "0"
+          GroupSet:
+            - Ref: "SecurityGroup"
+      UserData:
+        Fn::Base64: |
+          #!/bin/bash
+          DEBIAN_FRONTEND=noninteractive apt-get update
+          DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
+          echo "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINaFgHdnrJSH/Z0BFtd0+TBJ809UxPcmFLt1VFnwGtOm miyakotech15" > /home/ubuntu/.ssh/authorized_keys
+          chown ubuntu:ubuntu /home/ubuntu/.ssh/authorized_keys
+          chmod 600 /home/ubuntu/.ssh/authorized_keys
+          locale-gen ja_JP.UTF-8
+          hostnamectl set-hostname miyakotech09
+  Miyakotech10:
+    Type: "AWS::EC2::Instance"
+    Properties:
+      ImageId: ami-0ee0b7ac4daa15e1d
+      InstanceType: t2.small
+      NetworkInterfaces:
+        - AssociatePublicIpAddress: "true"
+          DeviceIndex: "0"
+          GroupSet:
+            - Ref: "SecurityGroup"
+      UserData:
+        Fn::Base64: |
+          #!/bin/bash
+          DEBIAN_FRONTEND=noninteractive apt-get update
+          DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
+          echo "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINaFgHdnrJSH/Z0BFtd0+TBJ809UxPcmFLt1VFnwGtOm miyakotech15" > /home/ubuntu/.ssh/authorized_keys
+          chown ubuntu:ubuntu /home/ubuntu/.ssh/authorized_keys
+          chmod 600 /home/ubuntu/.ssh/authorized_keys
+          locale-gen ja_JP.UTF-8
+          hostnamectl set-hostname miyakotech10
+  Miyakotech11:
+    Type: "AWS::EC2::Instance"
+    Properties:
+      ImageId: ami-0ee0b7ac4daa15e1d
+      InstanceType: t2.small
+      NetworkInterfaces:
+        - AssociatePublicIpAddress: "true"
+          DeviceIndex: "0"
+          GroupSet:
+            - Ref: "SecurityGroup"
+      UserData:
+        Fn::Base64: |
+          #!/bin/bash
+          DEBIAN_FRONTEND=noninteractive apt-get update
+          DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
+          echo "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINaFgHdnrJSH/Z0BFtd0+TBJ809UxPcmFLt1VFnwGtOm miyakotech15" > /home/ubuntu/.ssh/authorized_keys
+          chown ubuntu:ubuntu /home/ubuntu/.ssh/authorized_keys
+          chmod 600 /home/ubuntu/.ssh/authorized_keys
+          locale-gen ja_JP.UTF-8
+          hostnamectl set-hostname miyakotech11
+  Miyakotech12:
+    Type: "AWS::EC2::Instance"
+    Properties:
+      ImageId: ami-0ee0b7ac4daa15e1d
+      InstanceType: t2.small
+      NetworkInterfaces:
+        - AssociatePublicIpAddress: "true"
+          DeviceIndex: "0"
+          GroupSet:
+            - Ref: "SecurityGroup"
+      UserData:
+        Fn::Base64: |
+          #!/bin/bash
+          DEBIAN_FRONTEND=noninteractive apt-get update
+          DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
+          echo "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINaFgHdnrJSH/Z0BFtd0+TBJ809UxPcmFLt1VFnwGtOm miyakotech15" > /home/ubuntu/.ssh/authorized_keys
+          chown ubuntu:ubuntu /home/ubuntu/.ssh/authorized_keys
+          chmod 600 /home/ubuntu/.ssh/authorized_keys
+          locale-gen ja_JP.UTF-8
+          hostnamectl set-hostname miyakotech12
+  Miyakotech13:
+    Type: "AWS::EC2::Instance"
+    Properties:
+      ImageId: ami-0ee0b7ac4daa15e1d
+      InstanceType: t2.small
+      NetworkInterfaces:
+        - AssociatePublicIpAddress: "true"
+          DeviceIndex: "0"
+          GroupSet:
+            - Ref: "SecurityGroup"
+      UserData:
+        Fn::Base64: |
+          #!/bin/bash
+          DEBIAN_FRONTEND=noninteractive apt-get update
+          DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
+          echo "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINaFgHdnrJSH/Z0BFtd0+TBJ809UxPcmFLt1VFnwGtOm miyakotech15" > /home/ubuntu/.ssh/authorized_keys
+          chown ubuntu:ubuntu /home/ubuntu/.ssh/authorized_keys
+          chmod 600 /home/ubuntu/.ssh/authorized_keys
+          locale-gen ja_JP.UTF-8
+          hostnamectl set-hostname miyakotech13
+  Miyakotech14:
+    Type: "AWS::EC2::Instance"
+    Properties:
+      ImageId: ami-0ee0b7ac4daa15e1d
+      InstanceType: t2.small
+      NetworkInterfaces:
+        - AssociatePublicIpAddress: "true"
+          DeviceIndex: "0"
+          GroupSet:
+            - Ref: "SecurityGroup"
+      UserData:
+        Fn::Base64: |
+          #!/bin/bash
+          DEBIAN_FRONTEND=noninteractive apt-get update
+          DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
+          echo "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINaFgHdnrJSH/Z0BFtd0+TBJ809UxPcmFLt1VFnwGtOm miyakotech15" > /home/ubuntu/.ssh/authorized_keys
+          chown ubuntu:ubuntu /home/ubuntu/.ssh/authorized_keys
+          chmod 600 /home/ubuntu/.ssh/authorized_keys
+          locale-gen ja_JP.UTF-8
+          hostnamectl set-hostname miyakotech14
+  Miyakotech15:
+    Type: "AWS::EC2::Instance"
+    Properties:
+      ImageId: ami-0ee0b7ac4daa15e1d
+      InstanceType: t2.small
+      NetworkInterfaces:
+        - AssociatePublicIpAddress: "true"
+          DeviceIndex: "0"
+          GroupSet:
+            - Ref: "SecurityGroup"
+      UserData:
+        Fn::Base64: |
+          #!/bin/bash
+          DEBIAN_FRONTEND=noninteractive apt-get update
+          DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
+          echo "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINaFgHdnrJSH/Z0BFtd0+TBJ809UxPcmFLt1VFnwGtOm miyakotech15" > /home/ubuntu/.ssh/authorized_keys
+          chown ubuntu:ubuntu /home/ubuntu/.ssh/authorized_keys
+          chmod 600 /home/ubuntu/.ssh/authorized_keys
+          locale-gen ja_JP.UTF-8
+          hostnamectl set-hostname miyakotech15
+Outputs:
+  miyakotech01:
+    Description: IPAddress for miyakotech01
+    Value: !GetAtt Miyakotech01.PublicIp
+  miyakotech02:
+    Description: IPAddress for miyakotech02
+    Value: !GetAtt Miyakotech02.PublicIp
+  miyakotech03:
+    Description: IPAddress for miyakotech03
+    Value: !GetAtt Miyakotech03.PublicIp
+  miyakotech04:
+    Description: IPAddress for miyakotech04
+    Value: !GetAtt Miyakotech04.PublicIp
+  miyakotech05:
+    Description: IPAddress for miyakotech05
+    Value: !GetAtt Miyakotech05.PublicIp
+  miyakotech06:
+    Description: IPAddress for miyakotech06
+    Value: !GetAtt Miyakotech06.PublicIp
+  miyakotech07:
+    Description: IPAddress for miyakotech07
+    Value: !GetAtt Miyakotech07.PublicIp
+  miyakotech08:
+    Description: IPAddress for miyakotech08
+    Value: !GetAtt Miyakotech08.PublicIp
+  miyakotech09:
+    Description: IPAddress for miyakotech09
+    Value: !GetAtt Miyakotech09.PublicIp
+  miyakotech10:
+    Description: IPAddress for miyakotech10
+    Value: !GetAtt Miyakotech10.PublicIp
+  miyakotech11:
+    Description: IPAddress for miyakotech11
+    Value: !GetAtt Miyakotech11.PublicIp
+  miyakotech12:
+    Description: IPAddress for miyakotech12
+    Value: !GetAtt Miyakotech12.PublicIp
+  miyakotech13:
+    Description: IPAddress for miyakotech13
+    Value: !GetAtt Miyakotech13.PublicIp
+  miyakotech14:
+    Description: IPAddress for miyakotech14
+    Value: !GetAtt Miyakotech14.PublicIp
+  miyakotech15:
+    Description: IPAddress for miyakotech15
+    Value: !GetAtt Miyakotech15.PublicIp

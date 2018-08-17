@@ -1,0 +1,12 @@
+{
+  "name": "miyakotech15",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "deploy":
+      "aws cloudformation deploy --stack-name miyakotech15 --template-file=cloudformation.yml",
+    "delete": "aws cloudformation delete-stack --stack-name miyakotech15",
+    "startdoc": "cd files && vuepress dev --port 1080"
+  }
+}
