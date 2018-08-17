@@ -30,3 +30,6 @@
 ## その他のOS
 
 公式の手順にはWindowsやmacOS向けのインストール手順も記載があります
+
+
+# [次へ](./02-getting_started.md)
