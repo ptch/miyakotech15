@@ -15,7 +15,7 @@ DockerのイメージはDockerfileという専用のファイルに作成手順�
 作成してみます。
 
 - Ubuntu 18.04をベースにする
-- 
+-
 
 ```sh
 mkdir miyakotech
@@ -65,4 +65,63 @@ docker run --rm -it miyakotech/example
 
 ```
 hello world
+```
+
+## Dockerfile内の記述
+
+よく使う記述を記載します。
+詳細は[公式サイト](https://docs.docker.com/engine/reference/builder)を
+
+#### `FROM`
+
+元になるイメージを指定します
+
+#### `MAINTAINER`
+
+作った人の名前を書き込んでおきます
+
+#### `RUN`
+
+ビルド時に実行するコマンドを指定します。何かをインストールしたり
+ファイルを書き換えたりするのに使います
+
+#### `ADD` or `COPY`
+
+ファイルをイメージ内に配置するときに使用します。
+通常は `ADD` で良いと思います（[違い](https://qiita.com/hihihiroro/items/0956326d6731bc927166#%E5%B7%AE%E5%88%86)）
+
+#### `ENV`
+
+コンテナ内の環境変数を指定します。
+Dockerで稼働するアプリケーションでは環境変数により振る舞いを
+変更する（接続先DBのホスト名を指定したり、初期パスワードを指定したり）
+ことがよく行われます。
+
+#### `EXPOSE`
+
+公開するポートを指定します。例えばWebサーバーだったら `80` と `443` を指定します。
+
+#### `ENTRYPOINT` / `CMD`
+
+コンテナとして起動したときに実行させるコマンドを指定します
+これが肝で、 `echo hogehoge` など、実行するとすぐに終了するコマンドを
+指定するとコンテナは即時実行、即時終了します。
+`ping localhost` など、ずっと動き続けるコマンドを指定すると、
+そのコンテナは動き続けます。
+
+##### `ENTRYPOINT` と `CMD` の違い
+
+- `ENTRYPOINT` は `docker run` するときにコマンドを上書き出来ず、引数として与えられるようになります
+- `CMD` は `docker run` するときにコマンドそのものを上書きできます
+
+通常は `ENTRYPOINT` を使うようにしたほうが判りやすいと思います。
+
+**例**
+
+```sh
+# ENTRYPOINT に ping とした場合
+docker run --rm -it hogehoge hostname   # -> ping hostname が実行される
+
+# CMD に ping とした場合
+docker run --rm -it hogehoge hostname   # -> hostname が実行される
 ```
